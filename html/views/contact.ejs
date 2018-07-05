@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="ccontactus">
+	<% include header.ejs %>
+    <div style="margin-top: 70px;" align="center">
+    <text style="font-size: 30px;">Developed by</text>
+    <br><br><br>
+    <input type="image" src="/cssFiles/fb.png" onClick="location.href='https://www.facebook.com/rohit.panchal.3781995';" width="50px" height="50px">
+    <a style="font-size: 20px; color: blue;" href="https://www.facebook.com/rohit.panchal.3781995">Rohit Panchal</a>
+
+    <input style="margin-left: 200px;" type="image" src="/cssFiles/fb.png" onClick="location.href='https://www.facebook.com/shivam.fialok.1';" width="50px" height="50px">
+    <a style="font-size: 20px; color: blue;" href="https://www.facebook.com/shivam.fialok.1">Shivam Fialok</a>
+
+    <input style="margin-left: 200px;" type="image" src="/cssFiles/fb.png" onClick="location.href='https://www.facebook.com/samanwaya.maurya';" width="50px" height="50px">
+    <a style="font-size: 20px; color: blue; " href="https://www.facebook.com/samanwaya.maurya">Samanwaya Maurya</a>
+    <br>
+    <br>
+    <br>
+    <input  type="image" src="/cssFiles/phone.png"  width="50px" height="50px">
+    <text style="font-size: 20px; color: black;" >9813829960</a>
+
+    <input style="margin-left: 200px;" type="image" src="/cssFiles/phone.png"  width="50px" height="50px">
+    <text style="font-size: 20px; color: black;" >7404241232</a>
+
+    <input style="margin-left: 200px;" type="image" src="/cssFiles/phone.png"  width="50px" height="50px">
+    <text style="font-size: 20px; color: black;" >9554673831</a>
+    <br>
+    <br>
+    <input  type="image" src="/cssFiles/email.png"  width="50px" height="50px">
+    <text style="font-size: 20px; color: black;" >iit2016127@iiita.ac.in</a>
+
+    <input style="margin-left: 140px;" type="image" src="/cssFiles/email.png"  width="50px" height="50px">
+    <text style="font-size: 20px; color: black;" >iit2016122@iiita.ac.in</a>
+
+    <input style="margin-left: 150px;" type="image" src="/cssFiles/email.png"  width="50px" height="50px">
+    <text style="font-size: 20px; color: black;" >iim2016501@iiita.ac.in</a>
+        <br><br>
+        <br>
+    <text style="font-size: 30px;">For any queries:</text>
+    <br>
+    </div>
+    <div id="contactform" >
+    </div>
+	<script >
+		document.getElementById("contactNav").classList.add('active');
+        $('#contactform').load('/givecontact')
+	</script>
+</body>
+</html>

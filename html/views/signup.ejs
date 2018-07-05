@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SignUp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+</head>
+<body class="signup" >
+  <% include header.ejs %>
+<div class="container-fluid"  >
+    <div class="row" align="center">
+    <div class="col-md-8" align="center">
+      <section>      
+        <h1 class="redtext"><span>Sign Up</span> </h1>
+        <hr>
+          <form class="form-horizontal" name="signup" id="signup" >        
+        <div class="form-group" align="center">
+          <label class="control-label col-sm-3">Email ID <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8" align="center">
+              <div class="input-group" align="center">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+              <input type="email" class="form-control" name="emailid" id="emailid" placeholder="Enter your Email ID">
+            </div>
+            <small class="control-label"> Your Email Id is being used for ensuring the security of your account, authorization and access recovery. </small> </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-3">Type <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <input type="text" class="form-control" name="type" id="type" placeholder="Are you Teacher or Student ?" value="">
+          </div>
+        </div>
+        
+        <div class="form-group " align="center">
+          <label class="control-label col-sm-3">Set Password <span class="text-danger">*</span></label> 
+                  <div class="col-md-5 col-sm-8">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input type="password" class="form-control" name="password" id="password" placeholder="Choose password (8-15 chars)" value="">
+                  </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">Confirm Password <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm your password" value="">
+            </div>  
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">First Name <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter your First Name here" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">Last Name <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter your Last Name here" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">Gender <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <label class="control-label">
+            <input name="gender" id="male" type="radio" value="Male" checked>
+            Male </label>
+               
+            <label class="control-label">
+            <input name="gender" id="female" type="radio" value="Female" >
+            Female </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">Contact No. <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+            <input type="text" class="form-control" name="contactnum" id="contactnum" placeholder="Enter your Primary contact no." value="">
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-xs-offset-3 col-md-8 col-sm-9"><span class="text-muted"><h1 class="redtext">Note:-</h1> <h1 class="control-label">By clicking Sign Up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Policy</a>, including our <a href="#">Cookie Use</a>.</h1> </span> </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-offset-3 col-xs-10">
+            <button id="submit-form" type = "submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+</div>
+
+  <script>
+    document.getElementById("signUpNav").classList.add('active');
+    $('#submit-form').click(function(){
+      var emailid = $('#emailid').val();
+      var password = $('#password').val();
+      var type = $('#type').val();
+      var cpassword = $('#cpassword').val();
+      var first_name = $('#first_name').val();
+      var last_name = $('#last_name').val();
+      var mobile = $('#contactnum').val();
+      var profile = $('#file_nm').val();
+      var gender="male";
+      if(document.getElementById('female').checked)
+          gender = "female";
+      $.post('/signup',
+        {  emailid : emailid,
+           type : type,
+           first_name : first_name,
+           last_name : last_name,
+           password : password,
+           cpassword : cpassword,
+           mobile : mobile,
+           profile : profile,
+           gender : gender
+        },
+        function(req,res){
+            alert(req);
+        });
+    });
+  </script>
+
+</body>
+</html>

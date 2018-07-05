@@ -1,0 +1,18 @@
+<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#"> <%=emailid%> </a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <input  onclick="home()" id ="dashb" class="active" type="image" src = "cssFiles/home.png" alt="submit" width="50" height="50" style="margin-left: 10px;" >
+		      <input  onclick="viewmsgs(this)" id ="msgs" type="image" src = "cssFiles/message.png" alt="submit" width="50" height="50" style="margin-left: 10px; margin-right: 10px;margin-top:5px;">
+		      <li><form style="margin-top:10px;" action="editprofile" method="post">
+					<div style="display:none;"> 
+						<input type="text" name="emailid" value= <%= emailid%> >
+					</div>
+		      		<input  id ="profile" type="image" src = "cssFiles/profile.png" alt="submit" width="50" height="50" >
+		 	 </form></li>
+		 	 <input style="margin-left: 1420px;" onclick=" window.location='/' " id ="logout"  type="image" src = "cssFiles/logout.png" alt="submit" width="50" height="50"  >
+	    	</ul>
+	  </div>
+	</nav>

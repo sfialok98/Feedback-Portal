@@ -1,0 +1,85 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+</head>
+
+<body>
+
+	<h2> <%= question %> </h2>
+	<div style="display: none">
+		<input type="text" id="course" value = <%= course %> >
+		<input type="text" id="quesid" value = <%= quesid %> >
+	</div>
+	<ul >
+		<% feedback.forEach((feed) => {%>
+			<label style="font-size: : 30% ; font: "sans-sarif"> --->> <%= feed.answer%></label>
+			<br>
+		<% }) %>
+	</ul>
+	<div id='myChart'>
+	 	<canvas id="LineChart" style="padding-left: 400px;padding-right: 400px; padding-bottom: 300px; padding-top: 50px;"></canvas>
+	 </div>
+		<script >
+			var data;
+			$.post('/getRatings',{
+				course : $('#course').val(),
+				quesid : $('#quesid').val()
+			},
+			function(req,res){
+				data = req;
+			});
+	 		var ctx = document.getElementById('LineChart');
+			var chart = new Chart(ctx, {
+		    // The type of chart we want to create
+		    type: 'bar',
+
+		    // The data for our dataset
+		    data: {
+		        labels: ["One", "Two", "Three", "Four", "Five"],
+		        datasets: [{
+		            label: "Rating",
+		            fill:false,
+		            backgroundColor: 'rgb(255, 0, 0)',
+		            borderColor: 'rgb(255, 0, 0)',
+		            data: data,
+		        }]
+		    },
+		    options: {
+			        legend: {
+			            labels: {
+			                // This more specific font property overrides the global property
+			                fontColor: 'red',
+			                fontSize: 30
+			            }
+			        },
+		             scales: {
+         			   yAxes: [{
+                			ticks: {
+                				fontColor:'red',
+                				fontSize:30,
+                    			beginAtZero: true
+                			}
+            			}],
+            			xAxes: [{
+                			ticks: {
+                				fontColor:'red',
+                				fontSize:30,
+                    			beginAtZero: true
+                			}
+            			}]
+        			}   
+		    }
+		});
+
+		 </script>
+
+
+</body>
+
+</html>

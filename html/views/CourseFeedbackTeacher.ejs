@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="courseFeedbackTeacher">
+<text class = 'yel' id = "ques" style="margin-left: 750px; margin-top: 60px;" >hello</text><br><br>
+	<div class="container1" id="myAns">
+	<form  class = "left1" action="previousQuesTeacher" method="post">
+					<div style="display:none;"> 
+						<input type="text" name="quesCode" value= <%= curQues%> >
+						<input type="text" name="emailid" value= <%= emailid%> >
+						<input type="text" name="course" value = <%= course %> >
+					</div>
+					<div id = "previous" class="btnWithText">
+					<input type = "image" src="/cssFiles/prev.png" alt="submit" width="100" height="100">
+					</div>
+	 </form>
+	
+	<input id="answer" type="image" src="/cssFiles/answer.png" style="width: 130px;" class="center1">
+	
+	<form class="right1" action="/nextQuesTeacher" method="post">
+					<div  style="display:none;" > 
+						<input type="text" name="quesCode" value= <%= curQues%> >
+						<input type="text" name="emailid" value= <%= emailid%> >
+						<input type="text" name="course" value = <%= course %> >
+					</div>
+					<div id = "next" class="btnWithText">
+				<input type = "image" src="/cssFiles/next.png" alt="submit" width="100" height="100">
+			</div>
+	</form>	
+	<br><br><br>
+	 <form style="margin-left: 300px; " action='/backDashTeacher' method = 'post'>
+			<div  style="display:none;" > 
+				<input type="text" name="emailid" value= <%= emailid%> >
+			</div>
+				<input type="image" src="cssFiles/back.png" style="width: 100px">
+	</form>
+</div>
+
+	<div id="AnsDiv" align="center" style="display:none;" class="answer_list" > 
+
+			<textarea  style="border-color:blue; width: 1200px;" rows="7" cols="50" name="Feedback" form="fillform" placeholder="Enter Feedback Here"></textarea>
+			<form class="form-container" action="/fillTeacheranswer" method="post" id="fillform">
+				<div  style="display:none;" > 
+					<input type="text" name="quesno" value= <%= curQues%> >
+					<input type="text" name="emailid" value= <%= emailid%> >
+					<input type="text" name="course" value = <%= course %> >
+				</div>
+				<button type="submit" class="w3-button w3-blue">	Submit </button>
+			</form>
+			<button id="collapse" type="submit" class="w3-button w3-blue">Collapse</button>
+	
+	 </div>
+	
+
+	 <script>
+				function fetchQuestion(){ 
+					$.post('/getTeacherQues',
+		        	{  
+		        		code : <%= curQues %>
+		        	},
+			        function(req,res){
+			        	document.getElementById("ques").innerHTML = req;
+			        });
+				}
+				fetchQuestion();
+
+				$('#answer').click(function(){
+				      document.getElementById('AnsDiv').style.display = "block";
+					  document.getElementById('myAns').style.display = "none";
+	    		});
+	    		$('#collapse').click(function(){
+	    			document.getElementById('AnsDiv').style.display = "none";
+					  document.getElementById('myAns').style.display = "block";
+	    		});
+	    		
+
+		</script>
+
+</body>
+</html>

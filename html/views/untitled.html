@@ -1,0 +1,73 @@
+/*       /* document.getElementById("pwd1").disabled = true;
+        document.getElementById("pwd2").disabled = true;
+        document.getElementById("pwd3").disabled = true;
+        document.getElementById("contact").disabled = true;
+        */
+    $('#chk1').click(function(){
+    /*if (this.checked) {
+        document.getElementById("pwd1").disabled = false;
+        document.getElementById("pwd2").disabled = false;
+        document.getElementById("pwd3").disabled = false;
+    }
+    else
+    {
+        document.getElementById("pwd1").disabled = true;
+        document.getElementById("pwd2").disabled = true;
+        document.getElementById("pwd3").disabled = true;
+    }*/
+});
+    $('#chk2').click(function(){
+      /*if (this.checked) {
+          document.getElementById("contact").disabled = false;
+      }
+      else
+      {
+          document.getElementById("contact").disabled = true;
+      }*/
+});
+    $('#submit-form').click(function(){
+      alert("hello");
+      /*var oldpassword = $('#pwd1').val();
+      var newpassword = $('#pwd2').val();
+      var newconfirmpass = $('#pwd3').val();
+      var mobile = $('#contact').val();
+      if(document.getElementById('chk1').checked)
+      {
+            if(oldpassword.length==0)
+                  alert("Enter old password");
+            else if(newpassword.length==0)
+                  alert("Enter new password");
+            else if(newconfirmpass.length==0)
+                  alert("comfirm your new password");
+            else if(newpassword != newconfirmpass)
+                alert("passwords don't match");
+            else if(password != oldpassword)
+                alert("password is incorrect");
+            else
+            {   
+                  alert("here");
+                  $.post('/updateprofile1',
+                  {   emailid : emailid,
+                      password : newpassword,
+                  },
+                  function(req,res){
+                  alert(req);
+                  });
+            }
+      }
+      if(document.getElementById('chk2').checked)
+      {
+            if(mobile.length==0)
+                  alert("Enter contact number");
+            else
+            {
+                  $.post('/updateprofile2',
+                  {   emailid : emailid,
+                      contact : mobile,
+                  },
+                  function(req,res){
+                  alert(req);
+                  });
+            }
+      }
+    });*/

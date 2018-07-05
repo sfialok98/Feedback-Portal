@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body class="dashboard_teacher">
+
+	<%include header2.ejs%>
+
+	<h2 style="font-family: Trebuchet MS Bold Italic; text-align: center;" >Welcome <%= firstname %> <%= lastname %></h2>
+	<div style="display: none">
+		<input id = "emailc" value = <%= emailid %> >
+	</div>
+	<% if(firstLogin == 'true') { %>
+		<% include firstloginTeacher.ejs %>
+	 <%}%>
+	 	<% if(firstLogin == 'false') { %>
+
+	 	<div class="container1"  style = "margin-top: 100px; margin-left: 150px;">
+			<button type="submit" class="w3-button w3-blue" class = "left1"  style = "margin-left:  120px;" id="fd1">Get Student Feedback of <%= course1 %> </button>
+			<button type="submit" class="w3-button w3-blue" class = "right1" style = "margin-left:  50px;" id="fd2">Get Student Feedback of <%= course2 %> </button>
+			<button type="submit" class="w3-button w3-blue" class = "left1"  style = "margin-left:  120px;" id="fd3">Get Teacher Feedback of <%= course1 %> </button>
+			<button type="submit" class="w3-button w3-blue" class = "right1" style = "margin-left:  50px;" id="fd4">Get Teacher Feedback of <%= course2 %> </button>
+		</div>
+
+		<% include feedbackButtons.ejs %>
+
+	 	<div class="container1" style="margin-top: 200px;"> 
+	 	
+	 	<form class = "left1" action="/fetchCourseTeacher" method="post">
+			<div style="display: none">
+				<input type="text" name="course" value= <%= course1 %> >
+				<input type="text" name="email" value= <%= emailid%> style = "display : none">
+			</div>
+			<div class="btnWithText">
+				<input type = "image" src="/cssFiles/Cour.jpg" alt="submit" width="250" height="250">
+				<div style="font-size: 40px; color: black;" class="centered2"><%= course1 %></div>
+			</div>
+			
+		</form>
+
+
+		<form class="right1" action="/fetchCourseTeacher" method="post">
+			<div style="display: none">
+				<input type="text" name="course" value= <%= course2 %> >
+				<input type="text" name="email" value= <%= emailid%> style = "display : none">
+			</div>
+			<div class="btnWithText">
+				<input type = "image" src="/cssFiles/Cour.jpg" alt="submit" width="250" height="250">
+				<div style="font-size: 40px; color: black;" class="centered2"><%= course2 %></div>
+			</div>
+		</form>	
+	</div>
+
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+		  <!-- Modal content -->
+		  <div class="modal-content">
+		    <div class="modal-header">
+		      <span onclick="document.getElementById('myModal').style.display='none'" class="close">&times;</span>
+		     	<h2>This is the feedback for the question : </h2>
+		    </div>
+		    <div class="modal-body" id="feedPlace">
+		    	
+ 		    </div>
+		    <div class="modal-footer">
+		      <h3>Today's thought :- If you want no problems in life, then die</h3>
+		    </div>
+		  </div>
+
+		</div>
+		
+	<div  id = "space" class="w3-modal">
+	    <div class="w3-modal-content w3-animate-zoom">
+	      <header class="w3-container w3-teal"> 
+	        <span onclick="document.getElementById('space').style.display='none'" 
+	        class="w3-button w3-display-topright">&times;</span>
+	        <h2>Your messages</h2>
+	      </header>
+	      <div id="id01" class="w3-container">
+	        <p>Some text..</p>
+	        <p>Some text..</p>
+	      </div>
+	      <footer class="w3-container w3-teal">
+	        <p>Today's thought : Cowards die daily, but brave die only once</p>
+	      </footer>
+	    </div>
+	 </div>
+
+	 <div style="display: none">
+  		<input id = "email" value= <%= emailid %> >
+  	</div>
+
+	 	<%}%>
+	 	<li><a href="/">Log out</a></li>
+	 	
+	 	<script type="text/javascript">
+	 		
+	 		$('#fd1').click(function(){
+				      document.getElementById('AnsDiv1').style.display = "block";
+				      document.getElementById('AnsDiv2').style.display = "none";
+				      document.getElementById('AnsDiv3').style.display = "none";
+				      document.getElementById('AnsDiv4').style.display = "none";
+					  
+	    		});
+
+	 		$('#fd2').click(function(){
+				      document.getElementById('AnsDiv2').style.display = "block";
+					  document.getElementById('AnsDiv1').style.display = "none";
+					  document.getElementById('AnsDiv3').style.display = "none";
+					  document.getElementById('AnsDiv4').style.display = "none";
+	    		});
+	 		$('#fd3').click(function(){
+				      document.getElementById('AnsDiv3').style.display = "block";
+				      document.getElementById('AnsDiv2').style.display = "none";
+				      document.getElementById('AnsDiv1').style.display = "none";
+				      document.getElementById('AnsDiv4').style.display = "none";
+					  
+	    		});
+
+	 		$('#fd4').click(function(){
+				      document.getElementById('AnsDiv4').style.display = "block";
+					  document.getElementById('AnsDiv1').style.display = "none";
+					  document.getElementById('AnsDiv3').style.display = "none";
+					  document.getElementById('AnsDiv2').style.display = "none";
+	    		});
+				 		// Get the modal
+			var modal = document.getElementById('myModal');
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("myBtn");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal 
+			fdaq1.onclick = function() {
+				showFeedback(1,1);
+			    modal.style.display = "block";
+			}
+			fdaq2.onclick = function() {
+				showFeedback(1,2);
+			    modal.style.display = "block";
+			}
+			fdaq3.onclick = function() {
+				showFeedback(1,3);
+			    modal.style.display = "block";
+			}
+			fdaq4.onclick = function() {
+				showFeedback(1,4);
+			    modal.style.display = "block";
+			}
+			fdaq5.onclick = function() {
+				showFeedback(1,5);
+			    modal.style.display = "block";
+			}
+			fdbq1.onclick = function() {
+				showFeedback(2,1);
+			    modal.style.display = "block";
+			}
+			fdbq2.onclick = function() {
+				showFeedback(2,2);
+			    modal.style.display = "block";
+			}
+			fdbq3.onclick = function() {
+				showFeedback(2,3);
+			    modal.style.display = "block";
+			}
+			fdbq4.onclick = function() {
+				showFeedback(2,4);
+			    modal.style.display = "block";
+			}
+			fdbq5.onclick = function() {
+				showFeedback(2,5);
+			    modal.style.display = "block";
+			}
+			fdcq1.onclick = function() {
+				showFeedback(3,1);
+			    modal.style.display = "block";
+			}
+			fdcq2.onclick = function() {
+				showFeedback(3,2);
+			    modal.style.display = "block";
+			}
+			fdcq3.onclick = function() {
+				showFeedback(3,3);
+			    modal.style.display = "block";
+			}
+			fdcq4.onclick = function() {
+				showFeedback(3,4);
+			    modal.style.display = "block";
+			}
+			fdcq5.onclick = function() {
+				showFeedback(3,5);
+			    modal.style.display = "block";
+			}
+			fddq1.onclick = function() {
+				showFeedback(4,1);
+			    modal.style.display = "block";
+			}
+			fddq2.onclick = function() {
+				showFeedback(4,2);
+			    modal.style.display = "block";
+			}
+			fddq3.onclick = function() {
+				showFeedback(4,3);
+			    modal.style.display = "block";
+			}
+			fddq4.onclick = function() {
+				showFeedback(4,4);
+			    modal.style.display = "block";
+			}
+			fddq5.onclick = function() {
+				showFeedback(4,5);
+			    modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			    modal.style.display = "none";
+			}
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+			
+			function showFeedback(crs,ques){
+					$('#feedPlace').load('/showFeedback',crs.toString()+ques.toString()+$('#emailc').val());
+				
+			}
+			function viewmsgs(element){
+				document.getElementById('space').style.display="block";
+			//	alert('ok');
+				$('#id01').load('/fetchmsgs',$('#email').val());
+				
+			}
+	//			<button  type="submit" style="float: left;"class="btn btn-primary"> <%= course1 %> </button>
+	/*<div class="btnWithText">
+				<input type = "image" src="/cssFiles/Cour.jpg" alt="submit" width="250" height="250">
+				<div style="font-size: 40px; color: black;" class="centered"><%= course1 %></div>
+			</div>*/
+
+
+			function home(){
+      }
+
+	 	</script>
+</body>
+</html>

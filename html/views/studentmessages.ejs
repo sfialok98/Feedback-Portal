@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+</head>
+
+<body>
+	
+	<div  id = "space3" class="w3-modal" >
+		<div class="w3-modal-content w3-animate-top" style="width: 500px; " >
+			<header  style="background-color: skyblue; border-bottom: 1px solid #000;  " class="w3-container " > 
+				<span onclick="document.getElementById('space3').style.display='none'" 
+				class="w3-button w3-display-topright" >&times;</span>
+				<h2>send message to..</h2>
+			</header>
+			<div id="id05" class="w3-container">
+				<label id="rec" value=  "" > </label>
+				<textarea id = "writereply" style="border-color:blue; width: 450px; font-size: 19px;" rows="13" cols="60" placeholder="enter your message here...."></textarea>
+				<button id="replysend" onclick= "saverep()"> send</button>
+
+			</div>
+			<footer style = "background-color:skyblue; border-top : 1px solid #000; " class="w3-container">
+				<p>Today's thought : Cowards die daily, but brave die only once</p>
+			</footer>
+		</div>
+	</div>
+	<div style="overflow-y: scroll; height: 500px;" >
+		<% message.forEach((msg) => { %>
+		<div class="alert alert-info">
+			<text style = "font-size: 18px; color: grey"><%= msg.sender %></text><br>
+
+			<label style="font-size: 20px;"> <%= msg.message %> </label>
+
+			<button id= <%= msg.sender %> onclick = "bring(this)" class="w3-button w3-blue" style = "float: right">reply</button>
+			<br>
+			<text><%= msg.sentDate %></text> 
+			<br>
+		</div>
+		<% }) %>
+	</div>
+
+
+
+
+	 <div style="display: none">
+  		<input id = "sender" value= <%= emailid %> >
+  	</div>
+
+	<script >
+		function bring(element) {
+				//alert(element.id);
+				document.getElementById('space3').style.display = "block";
+				document.getElementById('rec').innerHTML=element.id;
+				//$('#id05').load('/sendreply',$('#sender').val()+'&'+element.id );
+
+			}
+			function saverep(){
+				$.post('/sendMessage',
+					{
+						receiver: document.getElementById('rec').innerHTML,
+						sender : $('#sender').val(),
+						message : $('#writereply').val()
+					},
+					function(req,res){
+						alert("message sent successfully");
+						document.getElementById('space3').style.display = "none";	
+					}
+				);
+
+			}
+
+
+
+			
+	</script>
+</body>
+</html>

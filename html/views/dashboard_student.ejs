@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>	
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body class="dashboard">
+
+	<%include header2.ejs%>
+
+	<text style=" color: white; margin-left: 15px; font-size: 30px; font-family:  sans-serif, normal;">Welcome <%= firstname %> <%= lastname %></text><br>
+
+	
+
+	<div align="center" style="margin-top: 200px;"">
+	</div>
+	<% if(firstLogin == 'true') { %>
+		<% include firstloginStudent.ejs %>
+	<% } %>
+	<% if(firstLogin == 'false') { %>
+
+	<div class= "container1" align="center" style="margin-left: 150px;">
+		<form class = "left1" action="/fetchCourse" method="post">
+			<div style="display: none">
+				<input type="text" name="course" value= <%= course1 %> >
+				<input type="text" name="email" value= <%= emailid%> style = "display : none">
+			</div>
+			<div class="btnWithText">
+				<input type = "image" src="/cssFiles/Cour.jpg" alt="submit" width="250" height="250">
+				<div style="font-size: 40px; color: black;" class="centered"><%= course1 %></div>
+			</div>
+		</form>
+
+		<form class="center1" action="/fetchCourse" method="post">
+			<div style="display: none">
+				<input type="text" name="course" value= <%= course2 %> >
+				<input type="text" name="email" value= <%= emailid%> style = "display : none">
+			</div>
+			<div class="btnWithText">
+				<input type = "image" src="/cssFiles/Cour.jpg" alt="submit" width="250" height="250">
+				<div style="font-size: 40px;" class="centered"><%= course2 %></div>
+			</div>
+		</form>
+		
+		<form class ="right1" action="/fetchCourse" method="post">
+			<div style="display: none">
+				<input type="text" name="course" value= <%= course3 %> >
+				<input type="text" name="email" value= <%= emailid%> style = "display : none">
+			</div>
+			<div class="btnWithText">
+				<input type = "image" src="/cssFiles/Cour.jpg" alt="submit" width="250" height="250">
+				<div style="font-size: 40px;" class="centered"><%= course3 %></div>
+			</div>
+		</form>
+
+	</div>
+	
+  
+  <div  id = "space" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom">
+      <header class="w3-container w3-teal"> 
+        <span onclick="document.getElementById('space').style.display='none'" 
+        class="w3-button w3-display-topright">&times;</span>
+        <h2>These are the faculties you can contact in case of any query</h2>
+      </header>
+      <div id="id01" class="w3-container">
+        <p>Some text..</p>
+        <p>Some text..</p>
+      </div>
+      <footer class="w3-container w3-teal">
+        <p>Today's thought : Cowards die daily, but brave die only once</p>
+      </footer>
+    </div>
+  </div>
+
+  	<div style="display: none">
+  		<input id = "crs1" value= <%= course1 %> >
+  		<input id = "crs2" value= <%= course2 %> >
+  		<input id = "crs3" value= <%= course3 %> >
+		<input id = "emailc" value = <%= emailid %> >
+  	</div>
+  	<div class = "container1" align = "center" style="margin-left: 150px;">
+
+  		<div class="btnWithText left1">
+			<input type = "image" id="getfac1" src="/cssFiles/query.jpg" alt="submit" width="250" height="250" onclick="document.getElementById('space').style.display='block'">
+			<div style="font-size: 35px;" class="centered2">Query <%= course1 %></div>
+		</div>
+  	<div class="btnWithText center1">
+			<input type = "image" id="getfac2" src="/cssFiles/query.jpg" alt="submit" width="250" height="250" onclick="document.getElementById('space').style.display='block'">
+			<div style="font-size: 35px;" class="centered2">Query <%= course2 %></div>
+		</div>
+	<div class="btnWithText right1" >
+			<input type = "image" id="getfac3" src="/cssFiles/query.jpg" alt="submit" width="250" height="250" onclick="document.getElementById('space').style.display='block'">
+			<div style="font-size: 35px;" class="centered2">Query <%= course3 %></div>
+	</div>
+	</div>
+
+ 	<div  id = "space4" class="w3-modal">
+	    <div class="w3-modal-content w3-animate-zoom">
+	      <header class="w3-container w3-teal"> 
+	        <span onclick="document.getElementById('space4').style.display='none'" 
+	        class="w3-button w3-display-topright">&times;</span>
+	        <h2>Your messages</h2>
+	      </header>
+	      <div id="id02" class="w3-container">
+	        <p>Some text..</p>
+	        <p>Some text..</p>
+	      </div>
+	      <footer class="w3-container w3-teal">
+	        <p>Today's thought : Cowards die daily, but brave die only once</p>
+	      </footer>
+	    </div>
+	 </div>
+  
+		
+	<% } %>
+
+	<script type="text/javascript">
+			$('#getfac1').click(function(){
+				$('#id01').load('/fetchFaculty',$('#crs1').val() + '&' + $('#emailc').val());
+			});
+			$('#getfac2').click(function(){
+				$('#id01').load('/fetchFaculty',$('#crs2').val() + '&' + $('#emailc').val());
+			});
+			$('#getfac3').click(function(){
+				$('#id01').load('/fetchFaculty',$('#crs3').val() + '&' + $('#emailc').val());
+			});
+			function viewmsgs(element){
+				document.getElementById('space4').style.display="block";
+			//	alert('ok');
+				$('#id02').load('/fetchmsgsstudent',$('#emailc').val());
+				
+			}
+
+		function home(){
+       
+      }
+
+
+	</script>
+
+
+</body>
+</html>

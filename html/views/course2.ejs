@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+</head>
+<body class="courseFeedback">
+		<div align="center" style="margin-top: 60px;">
+			<text class = 'yel' id = "ques" >hello</text><br><br>
+			<div align="center"> 
+				<form  action="previousQues" method="post">
+					<div style="display:none;"> 
+						<input type="text" name="quesCode" value= <%= curQues%> >
+						<input type="text" name="emailid" value= <%= emailid%> >
+						<input type="text" name="course" value = <%= course %> >
+					</div>
+					<button id="previous" style="margin-right: 10px; width: 100px; float: left;"  type="submit" class="btn btn-primary">Previous</button>
+				</form>
+				
+				<button id="answer" type="submit" style="width: 100px;" class="btn btn-primary">Answer</button>
+				
+				<form action="/nextQues" method="post">
+					<div  style="display:none;" > 
+						<input type="text" name="quesCode" value= <%= curQues%> >
+						<input type="text" name="emailid" value= <%= emailid%> >
+						<input type="text" name="course" value = <%= course %> >
+					</div>
+					<button id="next" type="submit" style="width:100px; margin-left: 5px; float: right;" class="btn btn-primary">Next</button>
+				</form>
+			</ul>		
+
+			<div id="AnsDiv"  style="display:none;" class="answer_list" > 
+
+				<textarea style="border-color:blue; width: 1200px;" rows="7" cols="50" name="Feedback" form="fillform" placeholder="Enter Feedback Here"></textarea>
+				<form class="form-container" action="/fillstudentanswer" method="post" id="fillform">
+					<button type="submit" class="btn btn-primary">	Submit </button>
+					<div  style="display:none;" > 
+						<input type="text" name="quesno" value= <%= curQues%> >
+						<input type="text" name="emailid" value= <%= emailid%> >
+						<input type="text" name="course" value = <%= course %> >
+					</div>
+				</form>
+				<button id="collapse" type="submit" class="btn btn-primary">Collapse</button>
+			</div>
+
+		</div>
+
+		<form action='/backDash' method = 'post'>
+			<div  style="display:none;" > 
+				<input type="text" name="emailid" value= <%= emailid%> >
+			</div>
+				<button type="submit" class="btn btn-primary"> <<-back to dashboard </button>
+		</form>
+
+			<script>
+				function fetchQuestion(){ 
+					$.post('/getStudentQues',
+		        	{  
+		        		code : <%= curQues %>
+		        	},
+			        function(req,res){
+			        	document.getElementById("ques").innerHTML = req;
+			        });
+				}
+				fetchQuestion();
+
+				$('#answer').click(function(){
+				      document.getElementById('AnsDiv').style.display = "block";
+					  document.getElementById('answer').style.display = "none";
+					  document.getElementById('next').style.display = "none";
+					  document.getElementById('previous').style.display = "none";
+	    		});
+	    		$('#collapse').click(function(){
+	    			document.getElementById('AnsDiv').style.display = "none";
+					  document.getElementById('answer').style.display = "block";
+					  document.getElementById('next').style.display = "block";
+					  document.getElementById('previous').style.display = "block";
+	    		});
+	    		
+
+		</script>
+	</body>
+</html>

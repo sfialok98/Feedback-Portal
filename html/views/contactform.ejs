@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    padding-left: 300px;
+    padding-right: 300px;
+    padding-top: 25px;
+    padding-bottom: 50px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <form >
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Your Email..">
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit" id="submitdet">
+  </form>
+</div>
+<script >
+    $('#submitdet').click(function(){
+        if($('#fname').val().length==0||$('#subject').val().length==0||$('#email').val().length==0||$('#lname').val().length==0)
+        {
+            alert('All fields are mandatory');
+        }
+        else{
+            $.post('/adminfeed',
+            {
+                firstname : $('#fname').val(),
+                lastname : $('#lname').val(),
+                email : $('#email').val(),
+                subject : $('#subject').val(),
+            },
+            function(req,res){
+                alert('query recorded in our database, we will contact you soon...');
+            });
+        }
+    });
+</script>
+</body>
+</html>

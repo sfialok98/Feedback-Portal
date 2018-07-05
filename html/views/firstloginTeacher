@@ -1,0 +1,31 @@
+<form class="form-container" action='/fillCourses' method="post">
+    <select name="emailid">
+    <option value = <%= emailid %> > <%= emailid %></option>
+    </select>
+
+		<label>Current Courses</label>
+		<select name="CurrentCourse1">
+    	<option value="SMAT">First</option>
+    	<option value="ITP">Second</option>
+    	<option value="ITC">Third</option>
+    	<option value="IDST">Fourth</option>
+      <option value="EDEL">Fourth</option>
+      <option value="ICOA">Fourth</option>
+      <option value="SPAS">Fourth</option>
+      <option value="IDMA">Fourth</option>
+  		</select>
+
+  		<label>Branch</label>
+  		<select name="CurrentCourse2">
+      <option value="SMAT">First</option>
+      <option value="ITP">Second</option>
+      <option value="ITC">Third</option>
+      <option value="IDST">Fourth</option>
+      <option value="EDEL">Fourth</option>
+      <option value="ICOA">Fourth</option>
+      <option value="SPAS">Fourth</option>
+      <option value="IDMA">Fourth</option>
+      </select>
+
+		<button type="submit" class="btn btn-primary">Submit</button>
+</form>

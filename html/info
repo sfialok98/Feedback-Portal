@@ -1,0 +1,17 @@
+<form>
+  <input type="text" name="name" id="myname">
+  <button type="submit" id = "inte" class="btn btn-primary">ClickMe</button>
+  </form>
+
+  <script>
+    $('#inte').click(function(){
+      var king = $('#myname').val();
+      $.post('/test',
+        {
+          data : king
+        },
+        function(req,res){
+            alert(req);
+        });
+    });
+  </script>

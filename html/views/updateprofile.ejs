@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="updateprofile" >
+  <% include header2 %>
+<div class="container-fluid" style="margin-left: 550px;margin-top: 100px;">
+    <div class="row" align="center">
+      <text class="redtext" style = "font-size: 40px;margin-right: 500px; ">Edit your Profile, <%= emailid %></text>
+    <div class="col-md-8" align="center">
+
+      <section>      
+        <hr>
+          <form class="form-horizontal" name="signup" id="Update1" >       
+        <div class="form-group " align="center">
+          <label class="control-label col-sm-3">Old password <span class="text-danger">*</span></label> 
+                  <div class="col-md-5 col-sm-8">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                      <input id="pwd1" type="password" class="form-control" name="password" id="password" placeholder="Enter your old password" >
+                  </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">set new password<span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input id="pwd2" type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Enter new password(8-15 chars)">
+            </div>  
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-3">Confirm password <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <input id="pwd3" type="password" class="form-control" name="first_name" id="first_name" placeholder="Confirm your password" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3">Contact No. <span class="text-danger">*</span></label>
+          <div class="col-md-5 col-sm-8">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+            <input id="contact" type="text" class="form-control" name="contactnum" id="contactnum" placeholder="Enter your Primary contact no." value="">
+            </div> 
+          </div>
+        </div>
+        
+      </form>
+      </section>
+    </div>
+    </div>
+</div>
+    <form style="margin-left: 800px;" >
+      <input id="chk1" type="checkbox" name="vehicle" value="Bike"><text style="font-size: 20px; color: white">change password</text>
+      <input id="chk2" type="checkbox" name="vehicle1" value="Car">I<text style="font-size: 20px; color: white; ">change contact</text>
+      </form>
+
+<button type="submit" class="w3-button w3-blue" style = "margin-left: 1070px;margin-top: 20px;"id="updateSubmit"> Submit</button> 
+
+<div style="display: none">
+      <input id = "email" value= <%= emailid %> >
+      <input id = "password" value= <%= password %> >
+    </div>
+
+    <div  id = "space4" class="w3-modal">
+      <div class="w3-modal-content w3-animate-zoom">
+        <header class="w3-container w3-teal"> 
+          <span onclick="document.getElementById('space4').style.display='none'" 
+          class="w3-button w3-display-topright">&times;</span>
+          <h2>Your messages</h2>
+        </header>
+        <div id="id02" class="w3-container">
+          <p>Some text..</p>
+          <p>Some text..</p>
+        </div>
+        <footer class="w3-container w3-teal">
+          <p>Today's thought : Cowards die daily, but brave die only once</p>
+        </footer>
+      </div>
+   </div>
+  
+</body>
+
+
+<script>
+        document.getElementById("pwd1").disabled = true;
+        document.getElementById("pwd2").disabled = true;
+        document.getElementById("pwd3").disabled = true;
+        document.getElementById("contact").disabled = true;
+        
+    $('#chk1').click(function(){
+    if (this.checked) {
+        document.getElementById("pwd1").disabled = false;
+        document.getElementById("pwd2").disabled = false;
+        document.getElementById("pwd3").disabled = false;
+    }
+    else
+    {
+        document.getElementById("pwd1").disabled = true;
+        document.getElementById("pwd2").disabled = true;
+        document.getElementById("pwd3").disabled = true;
+    }
+});
+    $('#chk2').click(function(){
+      if (this.checked) {
+          document.getElementById("contact").disabled = false;
+      }
+      else
+      {
+          document.getElementById("contact").disabled = true;
+      }
+});
+    $('#updateSubmit').click(function(){
+      var oldpassword = $('#pwd1').val();
+      var newpassword = $('#pwd2').val();
+      var newconfirmpass = $('#pwd3').val();
+      var mobile = $('#contact').val();
+      var pass = $('#password').val();
+      var emailid = $('#email').val();
+      if(document.getElementById('chk1').checked)
+      {   
+            if(oldpassword.length==0)
+                  alert("Enter old password");
+            else if(newpassword.length==0)
+                  alert("Enter new password");
+            else if(newconfirmpass.length==0)
+                  alert("comfirm your new password");
+            else if(newpassword != newconfirmpass)
+                alert("passwords don't match");
+            else if(pass != oldpassword)
+                alert("password is incorrect");
+            else
+            {   
+                  $.post('/updateprofile1',
+                  {   emailid : emailid,
+                      password : newpassword
+                  },
+                  function(req,res){
+                  alert(req);
+                  });
+            }
+      }
+      if(document.getElementById('chk2').checked)
+      {
+            if(mobile.length==0)
+                  alert("Enter contact number");
+            else
+            {
+                  $.post('/updateprofile2',
+                  {   emailid : emailid,
+                      contact : mobile
+                  },
+                  function(req,res){
+                  alert(req);
+                  });
+            }
+      }
+    });
+
+    function viewmsgs(element){
+        document.getElementById('space4').style.display="block";
+      //  alert('ok');
+        $('#id02').load('/fetchmsgsstudent',$('#email').val());
+        
+      }
+
+      function home(){
+        window.history.back();
+      }
+</script> 
+</html>

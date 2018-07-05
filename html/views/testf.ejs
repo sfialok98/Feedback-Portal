@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/cssFiles/global.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+	
+
+	<div  id = "space" class="w3-modal"  >
+	    <div class="w3-modal-content w3-animate-top" style="width: 500px; " >
+	      <header  style="background-color: skyblue; border-bottom: 1px solid #000;  " class="w3-container " > 
+	        <span onclick="document.getElementById('space').style.display='none'" 
+	        class="w3-button w3-display-topright" >&times;</span>
+	        <h2>Your messages</h2>
+	      </header>
+	      <div id="id01" class="w3-container">
+	        <p>Some text..</p>
+	        <p>Some text..</p>
+	      </div>
+	      <footer style = "background-color:skyblue; border-top : 1px solid #000; " class="w3-container">
+	        <p>Today's thought : Cowards die daily, but brave die only once</p>
+	      </footer>
+	    </div>
+	 </div>
+</div>
+
+<script >
+		function bring(){
+				document.getElementById('space').style.display = "block";
+			}
+			bring();
+			
+	</script>
+</body>
+</html>
